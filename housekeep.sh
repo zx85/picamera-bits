@@ -19,5 +19,5 @@ for eachfile in ${filelist} ; do
    mkdir -p $destsubdir
 # rotate the pic
   log "Rotating ${eachfile} and removing if successful."
-  convert "$eachfile" -rotate 90  -gravity South -pointsize 30 -fill white -annotate +300+0 "$(basename ${eachfile} | awk '{print substr($0,1,13)":"substr($0,15,2)}')" "${destsubdir}/$(basename "$eachfile")"  && rm ${eachfile} || mv ${eachfile} "${destsubdir}/$(basename "$eachfile").DUFF"
+  convert "$eachfile" -rotate 90  -gravity South -pointsize 30 -fill white -annotate +300+0 "$(basename ${eachfile} | awk '{print substr($0,1,13)":"substr($0,14,2)}')" "${destsubdir}/$(basename "$eachfile")"  && rm ${eachfile} || mv ${eachfile} "${destsubdir}/$(basename "$eachfile").DUFF"
 done
