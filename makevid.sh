@@ -11,6 +11,7 @@ startpic=1
 startvid=0001
 srcdir=/media/dave/temp/pizero
 destdir=/media/dave/temp/pizero-pics
+destfile=${destdir}/housevideo.avi
 
 if [ ! -d ${srcdir} ] ; then
    echo "${srcdir} isn't there - you might want to run this from pinfinity"
@@ -33,4 +34,4 @@ done
 
 # Now make the vid
 log "Making the video ${destdir}/video.avi"
-ffmpeg -f image2 -framerate 25 -pattern_type sequence -r 15  -start_number ${startvid} -i ${destdir}/v1_%04d.jpg ${destdir}/video.avi
+ffmpeg -f image2 -framerate 25 -pattern_type sequence -r 15  -start_number ${startvid} -i ${destdir}/v1_%04d.jpg ${destfile}
