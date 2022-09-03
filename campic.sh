@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-suntimedir=/home/pi/picamera-bits/tmp"
+suntimedir=/home/pi/picamera-bits/tmp
 
 log () {
   logname="/var/log/scripts/$(basename $0 | sed 's/sh$/log/g')"
