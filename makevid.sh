@@ -23,9 +23,10 @@ mkdir -p ${destdir}
 pic=${startpic}
 
 # Do the serial business
-totalpics=$(find ${srcdir} -name "2022*.jpg" | wc -l)
+#totalpics=$(find ${srcdir} -name "2022*.jpg" | wc -l)
+totalpics=$( find ${srcdir} -type f -regex '.*-1[1-9][0-9][0-9][0-9][0-9]\.jpg' | wc -l)
 log "$totalpics pics to serialise"
-for eachpic in $(find ${srcdir} -name "2022*.jpg" | sort) ; do
+for eachpic in $(find ${srcdir} -type f -regex '.*-1[1-9][0-9][0-9][0-9][0-9]\.jpg' | sort) ; do
    pic=$(( $pic + 1 ))
    picname=$(printf "%04d\n" $pic)
    log "$pic/$totalpics - copying $eachpic to ${destdir}/v1_$picname.jpg"
@@ -33,5 +34,5 @@ for eachpic in $(find ${srcdir} -name "2022*.jpg" | sort) ; do
 done
 
 # Now make the vid
-log "Making the video ${destdir}/video.avi"
+log "Making the video ${destfile}"
 ffmpeg -y -f image2 -framerate 25 -pattern_type sequence -r 15  -start_number ${startvid} -i ${destdir}/v1_%04d.jpg ${destfile}
